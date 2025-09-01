@@ -1,0 +1,76 @@
+<!--
+  Este é o arquivo principal da estrutura HTML da aplicação CineMap.
+  Ele define todos os elementos visíveis na página inicial, importa as fontes,
+  os ícones e os estilos necessários, e carrega os scripts JavaScript que
+  controlam a interatividade da página.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Configurações do metadados do documento -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cine Map</title>
+
+  <!-- Links para folhas de estilo e fontes externas -->
+  <link rel="stylesheet" href="style-3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<body>
+  <!-- Botão do menu "hambúrguer" que controla a visibilidade do menu lateral -->
+  <button class="menu-btn" id="menu-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Menu de navegação lateral, inicialmente escondido -->
+  <nav class="menu" id="menu">
+    <!-- Botão para fechar o menu lateral -->
+    <button class="close-btn" id="close-btn">&times;</button>
+    <!-- Links de ação. O atributo 'data-action' é usado pelo JavaScript para identificar a função a ser executada -->
+    <a href="#" data-action="list"><span class="material-icons">favorite</span>  Meu catálogo</a>
+    <a href="#" data-action="add"><span class="material-icons">add</span>  Adicionar novo filme</a>
+    <a href="#" data-action="update"><span class="material-icons">update</span>  Atualizar filme</a>
+    <a href="#" data-action="delete"><span class="material-icons">delete</span>  Remover do meu catálogo</a>
+    <a href="#" data-action="clear"><span class="material-icons">close</span>  Apagar tudo</a>
+    <!-- Ações de filtragem e visualização -->
+    <a href="#" data-action="listByDirector"><span class="material-icons">movie</span>  Filmes por diretor</a>
+    <a href="#" data-action="listByGenre"><span class="material-icons"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-280q66 0 113-47t47-113H320q0 66 47 113t113 47ZM280-600h160q0-33-23.5-56.5T360-680q-33 0-56.5 23.5T280-600Zm240 0h160q0-33-23.5-56.5T600-680q-33 0-56.5 23.5T520-600ZM480-80q-75 0-140.5-28.5t-114-77q-48.5-48.5-77-114T120-440v-440h720v440q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-80Zm0-80q116 0 198-82t82-198v-360H200v360q0 116 82 198t198 82Zm0-320Z"</svg> /></span>  Filmes por gênero</a>
+    <a href="#" data-action="exit"><span class="material-icons">logout</span>  Sair</a>
+  </nav>
+
+  <!-- Contêiner para o botão de iniciar, que inicializa a aplicação com dados padrão -->
+  <div class="start-btn-container">
+  <button id="start-btn" data-action="init">
+  <span class="material-icons" style="vertical-align: middle;">power_settings_new</span>
+  Iniciar
+</button>
+</div>
+  <!-- Título principal da página -->
+  <h1 id="main-title">&#x1F3A5; CineMap  &#x1F37F</h1>
+
+  <!-- Contêiner onde os formulários (adicionar, atualizar, etc.) serão injetados dinamicamente pelo JavaScript -->
+  <div id="forms"></div>
+
+  <!-- Contêiner onde as listas de filmes e outras saídas serão exibidas -->
+  <div id="output" class="output"></div>
+
+  <!-- Carregamento dos scripts JavaScript -->
+  <!-- 'ui.js' é carregado como um módulo para permitir o uso de 'import' e 'export' -->
+  <script type="module" src="ui.js"></script>
+  <script>
+    // Script inline para controlar a abertura e o fechamento do menu lateral.
+    // Ele adiciona ou remove a classe 'active' do elemento do menu.
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    const closeBtn = document.getElementById('close-btn');
+
+    menuBtn.addEventListener('click', () => menu.classList.toggle('active'));
+    closeBtn.addEventListener('click', () => menu.classList.remove('active'));
+  </script>
+</body>
+</html>
